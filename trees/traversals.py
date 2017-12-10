@@ -135,6 +135,18 @@ def check_leaf_traversal_same(tree1, tree2):
         print('Leaves are not same')
 
 
+def vertical_traversal(root, level, store={}):
+
+    if root is None:
+        return
+    vertical_traversal(root.left, level - 1, store)
+    try:
+        store[level].append(root.value)
+    except KeyError:
+        store[level] = [root.value]
+    vertical_traversal(root.right, level + 1, store)
+
+
 def make_tree():
     root = Node(1)
     root.left = Node(2, left=Node(4), right=Node(5))
@@ -161,3 +173,6 @@ leaves = []
 leaf_traversal(tree, leaves)
 print(leaves)
 check_leaf_traversal_same(tree, tree)
+vertical = {}
+vertical_traversal(tree, 0, vertical)
+print(vertical)
