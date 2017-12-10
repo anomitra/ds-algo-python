@@ -1,6 +1,7 @@
-from tree import Node
 from queue import Queue
-from decorators import return_if_empty
+
+from trees.decorators import return_if_empty
+from trees.tree import Node
 
 
 def print_inorder(root):
@@ -136,7 +137,6 @@ def check_leaf_traversal_same(tree1, tree2):
 
 
 def vertical_traversal(root, level, store={}):
-
     if root is None:
         return
     vertical_traversal(root.left, level - 1, store)
