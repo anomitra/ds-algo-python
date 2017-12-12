@@ -38,6 +38,22 @@ def root_to_leaf_with_path(root, sum, stack):
         stack.pop()
 
 
+def print_ancestors(root, target, path):
+    if root.value == target:
+        path.append(target)
+        print('Found the target -> ', target)
+        print('The path is ', path)
+        return
+    if root.left:
+        path.append(root.value)
+        print_ancestors(root.left, target, path)
+        path.pop()
+    if root.right:
+        path.append(root.value)
+        print_ancestors(root.right, target, path)
+        path.pop()
+
+
 def make_tree():
     return Node(
         10,
@@ -57,3 +73,5 @@ tree = make_tree()
 root_to_leaf(tree, 14)
 stack = []
 root_to_leaf_with_path(tree, 23, stack)
+path = []
+print_ancestors(tree, 5, path)

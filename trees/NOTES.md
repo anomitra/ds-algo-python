@@ -38,3 +38,27 @@ return max(left_diameter, right_diameter, l_height + r_height + 1)
 Check height difference between left subtree and right subtree is less than one, and recursively
 check if it's left and right subtrees are height-balanced. If these conditions are met, then the tree
 is height-balanced.
+
+### Populate inorder successor in `next` reference
+
+> Question: Given a Binary Tree where each node has following structure, write a function to populate next pointer for all nodes. The next pointer for every node should be set to point to inorder successor.
+
+**Solution:** Traverse the given tree in a reverse inorder traversal. Pass the previous node reference as a function argument, and set it in the current node.
+
+```python
+
+def populate_next_recursively(tree, next=None):
+    populate_next_recursively(tree.right, next)
+    tree.next = next
+    next = tree
+    populate_next_recursively(tree.left, next)
+
+populate_next_recursively(root)
+```
+
+### Foldable binary trees
+
+> Question: Given a binary tree, find out if the tree can be folded or not. A tree can be folded if left and right subtrees of the tree are structure wise mirror image of each other. An empty tree is considered as foldable.
+
+**Solution:** Mirror the left subtree, and then compare if it is structurally similar to the right subtree. If that condition holds, then the tree is foldable.
+
