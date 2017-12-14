@@ -62,3 +62,14 @@ populate_next_recursively(root)
 
 **Solution:** Mirror the left subtree, and then compare if it is structurally similar to the right subtree. If that condition holds, then the tree is foldable.
 
+### Remove paths where `sum >= k`
+
+> Question: For a binary tree, a complete path is defined as a path from root to a leaf. The sum of all the nodes on that path is defined as it's sum. Given a number K, you have to remove (prune the tree) all nodes which don’t lie in any path with sum>=k.
+
+**Solution:** Traverse the tree, and recursively keep calculating the sum of each path.
+We use a function argument like `sum_till_now` to maintain the sum of the path, and use
+different variables for the left and right subtree (so that we get sums of both
+subtrees independently).
+
+Then, when we reach a leaf, we check if either sum has reached `k` or not. If not, then we
+delete the node and continue the traversal. In this manner, all nodes are deleted in a bottom up manner.
