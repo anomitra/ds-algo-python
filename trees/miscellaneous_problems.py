@@ -56,6 +56,43 @@ def find_next_right_node(root, value):
             get_next = True
             node_level = level
 
+
+def _closest_leaf_down(root):
+    if root is None:
+        return 99999999
+    if root.left is None and root.right is None:
+        return 0
+    return 1 + min(_closest_leaf_down(root.right), _closest_leaf_down(root.left))
+
+
+def closest_leaf(root, value, ancestors):
+    if root is None:
+        return 99999999
+
+    if root.value == value:
+        # Find the closest leaf down
+        import ipdb; ipdb.set_trace()
+        dist = _closest_leaf_down(root)
+        # Find the closest leaf above
+        for index, node in enumerate(reversed(ancestors)):
+            dist = min(dist, len(ancestors) - index + _closest_leaf_down(node))
+        return dist
+
+    ancestors.append(root)
+    return min(
+        closest_leaf(
+            root.left,
+            value,
+            ancestors,
+        ),
+        closest_leaf(
+            root.right,
+            value,
+            ancestors,
+        )
+    )
+
+
 def make_tree():
     return Node(
         18,
@@ -76,5 +113,5 @@ map = dict()
 vertical_sum_by_levels(tree, map, 0)
 print(map)
 find_next_right_node(tree, 8)
-find_next_right_node(tree, 3)
-find_next_right_node(tree, 18)
+aux_arr = []
+print(closest_leaf(tree, 3, aux_arr))
