@@ -1,5 +1,7 @@
 # Miscellaneous Notes on Trees
 
+## Binary Trees
+
 ### Delete a Tree
 
 Traverse the tree in postorder, and delete the node instead of printing it.
@@ -73,3 +75,27 @@ subtrees independently).
 
 Then, when we reach a leaf, we check if either sum has reached `k` or not. If not, then we
 delete the node and continue the traversal. In this manner, all nodes are deleted in a bottom up manner.
+
+## Binary Search Trees
+
+### Sum Tree in BST
+
+> Question: Given a Binary Search Tree (BST), convert it to a Binary Tree such that every key of the original BST is changed to key plus sum of all greater keys in BST
+
+**Solution:** Do a reverse inorder traversal, maintain the sum of all the nodes upto the point where we have traversed and then
+add that value to the current node.
+
+### Check if every internal node in a BST has exactly one child
+
+> Question: Given the preorder traversal of a binary tree, check if each internal
+node in the BST has exactly one child.
+
+**Solution:** Check the last two values in the array, and mark them as `min` and `max` accordingly.
+If the tree is a skewed tree, all other values will be either lesser than min or higher than max. Traverse
+the array and check all the values, and return accordingly.
+
+### Number of possible binary trees with `n` different keys
+
+The number is given by the Catalan number of Cn.
+
+

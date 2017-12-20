@@ -1,7 +1,7 @@
 from queue import Queue
 
-from trees.decorators import return_if_empty
-from trees.tree import Node
+from decorators import return_if_empty
+from tree import Node
 
 
 def print_inorder(root):
