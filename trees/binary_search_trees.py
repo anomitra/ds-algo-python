@@ -5,7 +5,7 @@ from tree import Node
 def bst_insert(root, value):
     if root is None:
         root = Node(value)
-    if value < root.value:
+    if value < root.value:  
         if root.left is None:
             root.left = Node(value)
         else:
